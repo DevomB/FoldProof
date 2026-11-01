@@ -10,22 +10,23 @@ and outcomes. The remaining visual checks are tracked in `DEMO_QUICKSTART.md`.
 One-slider recheck, November 1: the bot now has one setting, Risk. The hands were found with
 the old two sliders, at the settings that map exactly to a Risk: Risk 0, Bluff 60 is now
 Risk 100 (Vex), and Risk 100, Bluff 0 is now Risk 0 (Ivy). All six scenes and challenges
-passed again on the one-slider engine below, with the same cards, moves, grades and
-results. Only scene (b)'s reason changed, because it quotes the Risk. Rook (Risk 0, Bluff
-0%) has no exact Risk, so checklist rows 3, 4 and 7 now use Mia (Risk 50), checked on the
-same engine.
+passed again on the first one-slider build (commit `f81df9d`, SHA-256 `3a392d79…`), with
+the same cards, moves, grades and results. Only scene (b)'s reason changed, because it
+quotes the Risk. Rook (Risk 0, Bluff 0%) has no exact Risk, so checklist rows 3, 4 and 7
+now use Mia (Risk 50), checked on the same build. The final build below passed all six again.
 
 ## What the hands were checked on
 
 - **Engine.** `poker.exe` with SHA-256
-  `3a392d797dac0ba47e19164482fc136cf6f244a7d91d337e917851c8e313f9d6`. It was linked on
-  Nov 1, 2026 at 12:09 PM PST, from branch `sunday/one-slider-web` at commit `f81df9d`,
-  which holds lane 1's one-slider engine (`sunday/one-slider` at `073e2e5`, with
-  `sunday/review-fixes`). Lane 1's later engine commits, up to `71ee280`, change only
-  comments and proofs, not the code the program runs.
-- **Checked on** Nov 1, 2026, 12:48 PM PST. Each river spot was replayed twice from
+  `1bdc438a6d6221a623b10922a0e266eaa0d6112fd99ce92c87ab5e0672e38b3a`. It was linked on
+  Nov 1, 2026 at 1:28 PM PST in the main checkout, at commit `9571228`, with every lane
+  merged: the review screen, the one Risk slider on the web, and lane 1's engine. No engine
+  file differed from that commit, and the program reports `engineCommit` `9571228`.
+- **Checked on** Nov 1, 2026, 1:29 PM PST. Each river spot was replayed twice from
   `new_game`, with the same seed and moves: once ending in a call, once in a fold. Both
-  replays reached the same river state and the same `worth_bb`.
+  replays reached the same river state and the same `worth_bb`. All six passed.
+- **The same build** passed the full test suite (22 files, 404 tests), `next build` and the
+  production HTTP smoke test (`checks/http-smoke.mjs`) on the Windows demo laptop.
 - **Turn mode: exact.** The bot counts every river card and every opponent hand (45,540
   outcomes). The mode is a fixed constant in `engine/Engine/Equity.lean`, with its benchmark.
   The flop uses 1,000 seeded random deals. The river is exact.
